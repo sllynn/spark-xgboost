@@ -1,0 +1,43 @@
+on:
+  release:
+    types: [created]
+
+name: Build & upload release asset
+
+env:
+  GITHUB_TOKEN: ${{ github.token }}
+
+jobs:
+  build:
+    name: Upload release asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build release assets
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+          architecture: 'x64'
+      - run: |
+          pip install wheel
+          python setup.py sdist bdist_wheel
+      - name: Export release assets
+        id: pkg
+        run: |
+          whl=$(find dist/ -name '*.whl' -exec basename {} \;)
+          echo "::set-output name=WHL::$whl"
+      - name: Get release
+        id: get_release
+        uses: bruceadams/get-release@v1.2.0
+      - name: Upload whl
+        id: upload_whl
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: dist/${{ steps.pkg.outputs.WHL }}
+          asset_name: ${{ steps.pkg.outputs.WHL }}
+          asset_content_type: application/octet-stream
+        

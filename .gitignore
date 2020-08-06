@@ -1,0 +1,4 @@
+/.idea/
+/build/
+/dist/
+/xgboost4J4py.egg-info/

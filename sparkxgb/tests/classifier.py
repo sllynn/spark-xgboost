@@ -2,7 +2,7 @@ import unittest
 
 from pyspark.sql.types import StringType
 
-from sparkxgb.xgboost import XGBoostClassifier
+from sparkxgb.xgboost import XGBoostClassifier, XGBoostClassificationModel
 from sparkxgb.testing.utils import default_session
 from pyspark.ml import Pipeline
 from pyspark.ml.feature import VectorAssembler, StringIndexer, Binarizer
@@ -73,9 +73,8 @@ class XGBClassifierTests(unittest.TestCase):
         model = xgb.fit(self.train_sdf.limit(10))
         roc = bce.evaluate(model.transform(self.test_sdf))
 
-        print(roc)
-
-        self.assertEqual(True, False)
+        self.assertIsInstance(model, XGBoostClassificationModel)
+        self.assertGreater(roc, 0.5)
 
 
 if __name__ == '__main__':

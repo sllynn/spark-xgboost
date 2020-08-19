@@ -5,7 +5,7 @@ from pyspark.sql.types import StringType
 from sparkxgb.xgboost import XGBoostClassifier, XGBoostClassificationModel
 from sparkxgb.testing.utils import default_session
 from pyspark.ml import Pipeline
-from pyspark.ml.feature import VectorAssembler, StringIndexer, Binarizer
+from pyspark.ml.feature import VectorAssembler, StringIndexer
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 
 

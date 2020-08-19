@@ -16,6 +16,15 @@ jobs:
     strategy:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8]
+        include:
+          - python-version: 3.5
+            pyspark-version: 2.4.5
+          - python-version: 3.6
+            pyspark-version: 2.4.6
+          - python-version: 3.7
+            pyspark-version: 2.4.6
+          - python-version: 3.8
+            pyspark-version: 3.0.0
 
     steps:
     - uses: actions/checkout@v2

@@ -39,6 +39,7 @@ jobs:
     - name: Install dependencies
       run: |
         if [ -f requirements-dev.txt ]; then conda install --file requirements-dev.txt; fi
+        conda install pyspark= ${{ matrix.pyspark-version }}
         pip install -e .
     - name: Test with unittest
       run: |

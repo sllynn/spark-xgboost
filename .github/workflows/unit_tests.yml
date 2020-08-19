@@ -33,4 +33,4 @@ jobs:
         pip install -e .
     - name: Test with unittest
       run: |
-        cd sparkxgb/tests && python -m unittest classifier.py
+        cd /home/runner/work/spark-xgboost/spark-xgboost/sparkxgb/tests && python -m unittest classifier.py

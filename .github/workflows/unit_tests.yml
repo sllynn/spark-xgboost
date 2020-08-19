@@ -32,4 +32,4 @@ jobs:
         pip install -e .
     - name: Test with unittest
       run: |
-        cd /home/runner/work/spark-xgboost/spark-xgboost/sparkxgb/tests && python -m unittest classifier.py
+        cd $GITHUB_WORKSPACE/sparkxgb/tests && python -m unittest classifier.py

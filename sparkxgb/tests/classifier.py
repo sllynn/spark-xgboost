@@ -61,8 +61,8 @@ class XGBClassifierTests(unittest.TestCase):
 
         xgb = (
             XGBoostClassifier(**xgb_params)
-                .setFeaturesCol("features")
-                .setLabelCol("label_ix")
+            .setFeaturesCol("features")
+            .setLabelCol("label_ix")
         )
 
         bce = BinaryClassificationEvaluator(
@@ -70,13 +70,13 @@ class XGBClassifierTests(unittest.TestCase):
             labelCol="label_ix"
         )
 
-        model = xgb.fit(self.train_sdf.limit(10))
+        model = xgb.fit(self.train_sdf)
         roc = bce.evaluate(model.transform(self.test_sdf))
 
         print(roc)
 
         self.assertIsInstance(model, XGBoostClassificationModel)
-        self.assertGreater(roc, 0.3)
+        self.assertGreater(roc, 0.8)
 
 
 if __name__ == '__main__':

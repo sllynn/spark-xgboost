@@ -25,7 +25,7 @@ class XGBClassifierTests(unittest.TestCase):
 
         sdf = (
             self.spark.read
-                .csv(path="./data/adult.data", inferSchema=True)
+                .csv(path="./sparkxgb/tests/data/adult.data", inferSchema=True)
                 .toDF(*col_names)
                 .repartition(200)
         )
@@ -45,6 +45,27 @@ class XGBClassifierTests(unittest.TestCase):
         sdf_prepared = fitted_pipeline.transform(sdf)
 
         self.train_sdf, self.test_sdf = sdf_prepared.randomSplit([0.8, 0.2], seed=1337)
+
+    def test_binary_classifier_args(self):
+
+        self.spark.sparkContext.setLogLevel("INFO")
+
+        xgb_params = dict(
+            eta=0.1,
+            maxDepth=2,
+            missing=0.0,
+            objective="binary:logistic",
+            numRound=5,
+            numWorkers=2,
+            killSparkContextOnWorkerFailure=False
+        )
+
+        xgb = (
+            XGBoostClassifier(**xgb_params)
+            .setFeaturesCol("features")
+            .setLabelCol("label_ix")
+        )
+        self.assertIsInstance(xgb, XGBoostClassifier)
 
     def test_binary_classifier(self):
 

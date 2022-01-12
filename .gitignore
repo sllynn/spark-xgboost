@@ -2,3 +2,6 @@
 /build/
 /dist/
 /spark_xgboost.egg-info/
+.vscode/settings.json
+.gitignore
+*.pyc

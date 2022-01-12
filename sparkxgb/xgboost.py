@@ -42,6 +42,7 @@ class XGBoostClassifier(XGboostEstimator):
                  gamma=0.0,
                  growPolicy="depthwise",
                  interactionConstraints=None,
+                 killSparkContextOnWorkerFailure=True,
                  labelCol="label",
                  lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                  lambdaBias=0.0,
@@ -107,6 +108,7 @@ class XGBoostClassifier(XGboostEstimator):
                   gamma=0.0,
                   growPolicy="depthwise",
                   interactionConstraints=None,
+                  killSparkContextOnWorkerFailure=True,
                   labelCol="label",
                   lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                   lambdaBias=0.0,
@@ -196,6 +198,7 @@ class XGBoostRegressor(XGboostEstimator):
                  groupCol=None,
                  growPolicy="depthwise",
                  interactionConstraints=None,
+                 killSparkContextOnWorkerFailure=True,
                  labelCol="label",
                  lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                  lambdaBias=0.0,
@@ -262,6 +265,7 @@ class XGBoostRegressor(XGboostEstimator):
                   groupCol=None,
                   growPolicy="depthwise",
                   interactionConstraints=None,
+                  killSparkContextOnWorkerFailure=True,
                   labelCol="label",
                   lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                   lambdaBias=0.0,

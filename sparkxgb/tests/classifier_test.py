@@ -53,6 +53,7 @@ class XGBClassifierTests(unittest.TestCase):
         xgb_params = dict(
             eta=0.1,
             maxDepth=2,
+            maxBin=128,
             missing=0.0,
             objective="binary:logistic",
             numRound=5,

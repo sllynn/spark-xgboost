@@ -47,7 +47,7 @@ class XGBoostClassifier(XGboostEstimator):
                  lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                  lambdaBias=0.0,
                  leafPredictionCol=None,
-                 maxBins=16,
+                 maxBin=256,
                  maxDeltaStep=0.0,
                  maxDepth=6,
                  maxLeaves=None,
@@ -113,7 +113,7 @@ class XGBoostClassifier(XGboostEstimator):
                   lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                   lambdaBias=0.0,
                   leafPredictionCol=None,
-                  maxBins=16,
+                  maxBin=256,
                   maxDeltaStep=0.0,
                   maxDepth=6,
                   maxLeaves=None,
@@ -203,7 +203,7 @@ class XGBoostRegressor(XGboostEstimator):
                  lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                  lambdaBias=0.0,
                  leafPredictionCol=None,
-                 maxBins=16,
+                 maxBin=256,
                  maxDeltaStep=0.0,
                  maxDepth=6,
                  maxLeaves=None,
@@ -270,7 +270,7 @@ class XGBoostRegressor(XGboostEstimator):
                   lambda_=1.0,  # Rename of 'lambda' param, as this is a reserved keyword in python.
                   lambdaBias=0.0,
                   leafPredictionCol=None,
-                  maxBins=16,
+                  maxBin=256,
                   maxDeltaStep=0.0,
                   maxDepth=6,
                   maxLeaves=None,

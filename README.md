@@ -6,6 +6,6 @@ Spark users can use XGBoost for classification and regression tasks in a distrib
 
 This repository contains the Python wrapper components from that PR. By building and installing the appropriate .whl (see 'releases' in this repository), PySpark users can directly use this wrapper with the XGBoost library.
 
-Tested with  XGBoost 1.3.1
+Tested with  XGBoost 1.5.2
 
 See the notebook in `/examples` for a practical illustration of usage.

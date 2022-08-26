@@ -58,7 +58,8 @@ class XGBClassifierTests(unittest.TestCase):
             objective="binary:logistic",
             numRound=5,
             numWorkers=2,
-            killSparkContextOnWorkerFailure=False
+            killSparkContextOnWorkerFailure=False,
+            allowNonZeroForMissing=True,
         )
 
         xgb = (

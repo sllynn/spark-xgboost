@@ -24,7 +24,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='spark-xgboost',
-    version='0.90.2',
+    version='1.0.0',
     description='spark-xgboost is the PySpark package for XGBoost',
 
     long_description=long_description,

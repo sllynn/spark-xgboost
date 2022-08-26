@@ -25,6 +25,7 @@ class XGBoostClassifier(XGboostEstimator):
 
     @keyword_only
     def __init__(self,
+                 allowNonZeroForMissing=False,
                  alpha=0.0,
                  baseMarginCol=None,
                  baseScore=0.5,
@@ -91,6 +92,7 @@ class XGBoostClassifier(XGboostEstimator):
 
     @keyword_only
     def setParams(self,
+                  allowNonZeroForMissing=False,
                   alpha=0.0,
                   baseMarginCol=None,
                   baseScore=0.5,
@@ -180,6 +182,7 @@ class XGBoostRegressor(XGboostEstimator):
 
     @keyword_only
     def __init__(self,
+                 allowNonZeroForMissing=False,
                  alpha=0.0,
                  baseMarginCol=None,
                  baseScore=0.5,
@@ -247,6 +250,7 @@ class XGBoostRegressor(XGboostEstimator):
 
     @keyword_only
     def setParams(self,
+                  allowNonZeroForMissing=False,
                   alpha=0.0,
                   baseMarginCol=None,
                   baseScore=0.5,

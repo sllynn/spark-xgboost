@@ -19,39 +19,36 @@ from setuptools import setup, find_packages
 
 # Read the long description from README.MD
 here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
-    name='spark-xgboost',
-    version='0.90',
-    description='spark-xgboost is the PySpark package for XGBoost',
-
+    name="spark-xgboost",
+    version="0.91",
+    description="spark-xgboost provides non-official python bindings for XGBoost4j-Spark",
     long_description=long_description,
-    long_description_content_type='text/markdown',
-    url='https://xgboost.ai/',
-    author='DMLC',
+    long_description_content_type="text/markdown",
+    author="DMLC",
+    python_requires=">=3.8",
+    install_requires=["numpy", "pyspark>=3.3.0"],
     classifiers=[
         # Project Maturity
-        'Development Status :: 5 - Production/Stable',
-
+        "Development Status :: 5 - Production/Stable",
         # Intended Users
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Build Tools',
-
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Build Tools",
         # License
-        'License :: OSI Approved :: Apache Software License',
-
+        "License :: OSI Approved :: Apache Software License",
         # Supported Python Versions
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.4",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.11.2",
     ],
-    keywords='development spark xgboost',
-
+    keywords="development spark xgboost",
     packages=find_packages(),
-    include_package_data=False
+    include_package_data=False,
 )

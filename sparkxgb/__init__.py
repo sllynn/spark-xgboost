@@ -14,7 +14,17 @@
 # limitations under the License.
 #
 from sparkxgb import xgboost
-from sparkxgb.xgboost import XGBoostClassifier, XGBoostRegressor, XGBoostClassificationModel, XGBoostRegressionModel
+from sparkxgb.xgboost import (
+    XGBoostClassifier,
+    XGBoostRegressor,
+    XGBoostClassificationModel,
+    XGBoostRegressionModel,
+)
 
-__all__ = ["XGBoostClassifier", "XGBoostRegressor", "XGBoostClassificationModel", "XGBoostRegressionModel"]
-__version__ = "0.90"
+__all__ = [
+    "XGBoostClassifier",
+    "XGBoostRegressor",
+    "XGBoostClassificationModel",
+    "XGBoostRegressionModel",
+]
+__version__ = "0.91"

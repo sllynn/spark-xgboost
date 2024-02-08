@@ -14,30 +14,47 @@ class XGBClassifierTests(unittest.TestCase):
         self.spark = default_session()
 
         col_names = [
-            "age", "workclass", "fnlwgt",
-            "education", "education-num",
-            "marital-status", "occupation",
-            "relationship", "race", "sex",
-            "capital-gain", "capital-loss",
-            "hours-per-week", "native-country",
-            "label"
+            "age",
+            "workclass",
+            "fnlwgt",
+            "education",
+            "education-num",
+            "marital-status",
+            "occupation",
+            "relationship",
+            "race",
+            "sex",
+            "capital-gain",
+            "capital-loss",
+            "hours-per-week",
+            "native-country",
+            "label",
         ]
 
         sdf = (
-            self.spark.read
-                .csv(path="./data/adult.data", inferSchema=True)
-                .toDF(*col_names)
-                .repartition(200)
+            self.spark.read.csv(path="./data/adult.data", inferSchema=True)
+            .toDF(*col_names)
+            .repartition(200)
         )
 
-        string_columns = [fld.name for fld in sdf.schema.fields if isinstance(fld.dataType, StringType)]
+        string_columns = [
+            fld.name
+            for fld in sdf.schema.fields
+            if isinstance(fld.dataType, StringType)
+        ]
         string_col_replacements = [fld + "_ix" for fld in string_columns]
         string_column_map = list(zip(string_columns, string_col_replacements))
         target = string_col_replacements[-1]
-        predictors = [fld.name for fld in sdf.schema.fields if
-                      not isinstance(fld.dataType, StringType)] + string_col_replacements[:-1]
+        predictors = [
+            fld.name
+            for fld in sdf.schema.fields
+            if not isinstance(fld.dataType, StringType)
+        ] + string_col_replacements[:-1]
 
-        si = [StringIndexer(inputCol=fld[0], outputCol=fld[1]) for fld in string_column_map]
+        si = [
+            StringIndexer(inputCol=fld[0], outputCol=fld[1])
+            for fld in string_column_map
+        ]
         va = VectorAssembler(inputCols=predictors, outputCol="features")
         pipeline = Pipeline(stages=[*si, va])
         fitted_pipeline = pipeline.fit(sdf)
@@ -56,18 +73,17 @@ class XGBClassifierTests(unittest.TestCase):
             missing=0.0,
             objective="binary:logistic",
             numRound=5,
-            numWorkers=2
+            numWorkers=2,
         )
 
         xgb = (
-            XGBoostClassifier(**xgb_params)
+            XGBoostClassifier(xgboost_params=xgb_params)
             .setFeaturesCol("features")
             .setLabelCol("label_ix")
         )
 
         bce = BinaryClassificationEvaluator(
-            rawPredictionCol="rawPrediction",
-            labelCol="label_ix"
+            rawPredictionCol="rawPrediction", labelCol="label_ix"
         )
 
         model = xgb.fit(self.train_sdf)
@@ -79,5 +95,5 @@ class XGBClassifierTests(unittest.TestCase):
         self.assertGreater(roc, 0.8)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

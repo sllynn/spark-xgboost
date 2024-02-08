@@ -15,7 +15,7 @@ wheel: prepare-env
 	. .venv/bin/activate && python3 setup.py bdist_wheel
 
 .PHONY: tests
-tests: prepare-env prepare-tests
+tests: prepare-env 
 	. .venv/bin/activate && \
 	pip install . && \
 	cd ./sparkxgb/tests && \

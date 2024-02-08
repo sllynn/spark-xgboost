@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+from typing import Dict
 from pyspark import keyword_only
-
 from sparkxgb.common import XGboostEstimator, XGboostModel
 
 
@@ -53,6 +53,20 @@ class XGBoostClassificationModel(XGboostModel):
         super(XGBoostClassificationModel, self).__init__(
             classname=classname, java_model=java_model
         )
+
+    def getScore(self, feature: str = None, scoreType="weight") -> Dict[str, float]:
+
+        jvm_map = self.nativeBooster.getScore(feature, scoreType)
+
+        jvm_keys = jvm_map.keys().toList()
+
+        keys = [jvm_keys.apply(i) for i in range(0, jvm_keys.length())]
+
+        return {k: jvm_map.apply(k) for k in keys}
+
+    def getNumFeature(self) -> int:
+
+        return self.nativeBooster.getNumFeature()
 
     @property
     def nativeBooster(self):

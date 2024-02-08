@@ -90,7 +90,8 @@ class XGBClassifierTests(unittest.TestCase):
         roc = bce.evaluate(model.transform(self.test_sdf))
 
         print(roc)
-
+        print(model.getScore())
+        print(model.getNumFeature())
         self.assertIsInstance(model, XGBoostClassificationModel)
         self.assertGreater(roc, 0.8)
 

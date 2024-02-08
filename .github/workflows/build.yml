@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.6, 3.7]
-        pyspark-version: [2.4.5, 2.4.6, 3.0.0]
+        python-version: [3.8, 3.11.2]
+        pyspark-version: [3.3.0, 3.4.0, 3.5.0]
     steps:
     - uses: actions/checkout@v2
     - name: Setup conda
